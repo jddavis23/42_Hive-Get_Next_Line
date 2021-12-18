@@ -6,7 +6,7 @@
 /*   By: jdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 14:44:33 by jdavis            #+#    #+#             */
-/*   Updated: 2021/12/16 13:32:37 by jdavis           ###   ########.fr       */
+/*   Updated: 2021/12/17 10:25:19 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,13 @@ static int	is_end(int ret, char *c, char **line)
 
 static int	checks_plus(const int fd, char **line, char **c)
 {
-	if (fd < 0 || fd >= 1024 || BUFF_SIZE <= 0 || line == NULL)
+	if (fd < 0 || fd >= 4500 || BUFF_SIZE <= 0 || line == NULL)
 		return (-1);
 	if (!c[fd])
 	{
 		c[fd] = ft_strnew(100000);
 		if (!c[fd])
-		{
-			ft_memdel((void **)c);
 			return (-1);
-		}
 	}	
 	return (1);
 }
@@ -101,7 +98,7 @@ static int	initial_check(int ret, char *buff, char *c, char **line)
 
 int	get_next_line(const int fd, char **line)
 {
-	static char	*c[1024];
+	static char	*c[4500];
 	char		buff[BUFF_SIZE + 1];
 	int			ret;
 
